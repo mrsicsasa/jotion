@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { Footer } from "./footer";
  export const Heroes =()=>{
   return(
     <div className="flex flex-col items-center justify-center max-w-5xl">
@@ -18,8 +19,9 @@ import Image from "next/image";
                 fill
                 alt="Reading"
                 className="object-contain"
-                />>
+                />
             </div>
+        
         </div>
     </div>
   )
