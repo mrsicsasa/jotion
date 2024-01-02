@@ -2,10 +2,12 @@
 
 import { cn } from "@/lib/utils";
 import { ChevronsLeft, MenuIcon } from "lucide-react"
-import { ElementRef, useRef, useState } from "react";
+import { usePathname } from "next/navigation";
+import { ElementRef, useEffect, useRef, useState } from "react";
 import { useMediaQuery } from "usehooks-ts";
 
 export const Navigation=()=>{
+    const pathname=usePathname();
     const isMobile=useMediaQuery("(max-width:768px)")
     const isResizingRef=useRef(false);
     const sidebarRef=useRef<ElementRef<"aside">>(null)
@@ -36,7 +38,19 @@ export const Navigation=()=>{
           navbarRef.current.style.setProperty("width", `calc(100% - ${newWidth}px)`);
         }
       };
+      useEffect(() => {
+        if (isMobile) {
+          collapse();
+        } else {
+          resetWidth();
+        }
+      }, [isMobile]);
     
+      useEffect(() => {
+        if (isMobile) {
+          collapse();
+        }
+      }, [pathname, isMobile]);
       const handleMouseUp = () => {
         isResizingRef.current = false;
         document.removeEventListener("mousemove", handleMouseMove);
