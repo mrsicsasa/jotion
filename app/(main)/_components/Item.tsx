@@ -19,7 +19,7 @@ interface ItemProps{
     level?:number;
     onExpendad?:()=>void
     label:string;
-    onClick:()=>void;
+    onClick?:()=>void;
     icon:LucideIcon;
 }
 export const Item=({
